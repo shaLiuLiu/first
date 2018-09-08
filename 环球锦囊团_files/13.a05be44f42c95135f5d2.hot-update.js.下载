@@ -1,0 +1,11 @@
+webpackHotUpdate(13,{
+
+/***/ 21:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("Object.defineProperty(__webpack_exports__, \"__esModule\", { value: true });\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n\tdata: function data() {\n\t\treturn {};\n\t},\n\tmounted: function mounted() {\n\t\tthis.$router.push({ name: 'GlobalCouponIndex' });\n\t}\n});\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjEuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vQXBwLnZ1ZT9kOTg0Il0sInNvdXJjZXNDb250ZW50IjpbIjx0ZW1wbGF0ZT5cclxuXHQ8ZGl2IGNsYXNzPVwiYXBwLXdyYXBlciB3cmFwZXJcIj5cclxuXHRcdDxyb3V0ZXItdmlldz48L3JvdXRlci12aWV3PlxyXG5cdDwvZGl2PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdCB0eXBlPVwidGV4dC9lY21hc2NyaXB0LTZcIj5cclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRkYXRhICgpIHtcclxuXHRcdFx0cmV0dXJuIHtcclxuXHJcblx0XHRcdH07XHJcblx0XHR9LFxyXG5cdFx0bW91bnRlZCAoKSB7XHJcblx0XHRcdHRoaXMuJHJvdXRlci5wdXNoKHtuYW1lOiAnR2xvYmFsQ291cG9uSW5kZXgnfSk7XHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD56XHJcblxyXG48c3R5bGUgbGFuZz1cImxlc3NcIiByZWw9XCJzdHlsZXNoZWV0L2xlc3NcIj5cclxuXHRAaW1wb3J0ICcuLi9zdGF0aWMvY3NzL3RvdXItYXBwLWJhc2UuY3NzJztcclxuXHRib2R5IHtcclxuXHRcdGJhY2tncm91bmQ6ICNmYWZhZmE7XHJcblx0fVxyXG48L3N0eWxlPlxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBBcHAudnVlP2JjMmY1NzFlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQU9BO0FBQ0E7QUFDQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBUkEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///21\n");
+
+/***/ })
+
+})
