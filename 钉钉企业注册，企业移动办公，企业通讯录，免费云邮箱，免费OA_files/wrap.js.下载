@@ -1,0 +1,147 @@
+// 改为使用gitlab wonder-independent-wrap 仓库覆盖式发布
+
+;(function(win,doc){
+	var bundleVersion = '0.3.23'
+	var domain
+	var bannerTmsSrc = '//market.wapa.taobao.com/tms-coreserver/markets/dingtalk/wonder/independent/wrapper?wh_ttid=pc'
+	// var tmsJsonpCallbackFuncName = 'tms_jsonp_151600'
+	var bundleSrc = '//g-assets.daily.taobao.net/dingding/wonder-independent/___version___/bundle.js'
+	// var bundleSrc = '../bundle.js' // 本地开发
+	var isDevOrDaily = doc.location.protocol === 'http:'
+	var forceToPre = location.href.indexOf('forcetopre=1') !== -1
+	var useLocalBundle = location.href.indexOf('uselocalbundle=1') !== -1
+	var isPre = forceToPre || (!isDevOrDaily && win.location.hostname.indexOf('pre-') === 0)
+	if(isDevOrDaily){ // 开发或日常
+		domain = ''
+	}else if(isPre){ // 预发
+		domain = '//pre-oa.dingtalk.com'
+	}else{ // 线上
+		domain = '//oa.dingtalk.com'
+		bannerTmsSrc = 'https://tms.dingtalk.com/markets/dingtalk/wonder/independent/wrapper?wh_ttid=pc'
+		bundleSrc = '//g.alicdn.com/dingding/wonder-independent/___version___/bundle.js'
+	}
+	bundleSrc = bundleSrc.replace('___version___',bundleVersion)
+	if(useLocalBundle){
+		bundleSrc = '../bundle.js'
+	}
+
+	win.wonderIndependent.version = bundleVersion;
+	win.wonderIndependent.menusConfig = [
+		{
+			key:'t0', // t0 约定为点击logo和公司名的路由
+			url:domain + '/index.htm#/welcome'
+		},
+		{
+			key:'t1',
+			i18nKey:'oa_header_footer_contacts',
+			label:'通讯录',
+			url:domain + '/contacts.htm#/contacts'
+		},
+		{
+			key:'t2',
+			i18nKey:'oa_header_footer_work_platform',
+			label:'工作台',
+			url:domain + '/index.htm#/microApp/microAppList'
+		},
+		{
+			key:'t3',
+			i18nKey:'oa_header_footer_services',
+			label:'增值服务',
+			url:domain + '/index.htm#/service/market',
+			hideAbroad:true,
+			hideHk:true
+		},
+		{
+			key:'t4',
+			i18nKey:'oa_header_footer_data',
+			label:'企业数据',
+			// url:domain + '/data.htm#/dataLog'
+			url:domain + '/index.htm#/dataCenter'
+		},
+		{
+			key:'t5',
+			i18nKey:'oa_header_footer_home',
+			label:'企业主页',
+			url:domain + '/orgHome.htm#/welcome',
+			hideAbroad:true,
+			hideHk:false
+		},
+		{
+			key:'t6',
+			i18nKey:'oa_header_footer_settings',
+			label:'设置',
+			url:domain + '/index.htm#/setting#setOrgInfo'
+		},
+		{
+			key:'s1',
+			parentKey:'t1',
+			i18nKey:'oa_contacts_organization_contacts',
+			label:'内部通讯录管理',
+			// url:domain + '/contacts.htm#/contacts' // url缺省时为parent的url
+		},
+		{
+			key:'s6',
+			parentKey:'t1',
+			i18nKey:'oa_header_footer_association',
+			label:'关联组织',
+			url:domain + '/contacts.htm#/linkedOrg/info',
+			hideOnInit:true
+		},
+		{
+			key:'s5',
+			parentKey:'t1',
+			i18nKey:'oa_header_footer_departments',
+			label:'部门管理',
+			url:domain + '/contacts.htm#/deptManage'
+		},
+		{
+			key:'s2',
+			parentKey:'t1',
+			i18nKey:'oa_contacts_hr_management',
+			label:'智能人事',
+			url:domain + '/hrmregister/web/index#/personManage',
+			hideOnInit:true
+		},
+		{
+			key:'s3',
+			parentKey:'t1',
+			i18nKey:'oa_header_footer_external_contacts',
+			label:'外部联系人',
+			url:domain + '/contacts.htm#/external'
+		},
+		{
+			key:'s4',
+			parentKey:'t1',
+			i18nKey:'oa_header_footer_mailbox_accounts_management',
+			label:'邮箱账号管理',
+			url:domain + '/contacts.htm#/mailboxAccountsManagement',
+			hideOnInit:true
+		}
+	]
+	win.wonderIndependent.otherConfig = {
+		logoutUrl: domain + '/logout.htm',
+		registerUrl: domain + '/register.html'
+	}
+
+	win.tms_jsonp_151600 = function(tmsData){
+		win.wonderIndependent.onInit(function(){
+			var bannerText = 
+				tmsData && 
+				tmsData.modules && 
+				tmsData.modules[0] && 
+				tmsData.modules[0].data && 
+				tmsData.modules[0].data.banner && 
+				tmsData.modules[0].data.banner[0] && 
+				tmsData.modules[0].data.banner[0].banner
+			if(bannerText){
+				win.wonderIndependent.setBannerText(bannerText)
+			}
+		})
+		delete win.tms_jsonp_151600
+	}
+
+	win.wonderIndependent._asyncAppendJs(bundleSrc)
+	win.wonderIndependent._asyncAppendJs(bannerTmsSrc + '&_=' + Math.floor(new Date().getTime()/60000))
+	delete win.wonderIndependent._asyncAppendJs
+
+})(window,document)
